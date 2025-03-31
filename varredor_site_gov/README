@@ -1,0 +1,26 @@
+Scrapy Spider - Download e Compactação de Arquivos PDF
+
+Descrição
+Este código implementa um spider do Scrapy chamado downloadbot, que acessa uma página específica do site do governo brasileiro (ANS) e faz o download de dois arquivos PDF. Após baixar os arquivos, o código verifica se ambos foram salvos corretamente e, em seguida, os compacta em um arquivo ZIP.
+
+
+Funcionamento
+1. Inicialização e Requisição
+O método start_requests() define a URL da página onde os PDFs estão hospedados e envia uma requisição para processá-la com o método parse().
+
+2. Extração das URLs dos PDFs
+No método parse(), o spider usa XPath para localizar os links dos dois arquivos PDF na página. Se os links forem encontrados, são feitas requisições para baixá-los, chamando o método save_pdf().
+
+3. Download dos Arquivos
+O método save_pdf() recebe a resposta da requisição do arquivo PDF e salva o conteúdo na pasta anexos/.
+
+Se ambos os arquivos já tiverem sido baixados (verificado pelo número de arquivos na pasta), o método zipar() é chamado.
+
+4. Compactação dos Arquivos
+O método zipar() cria um arquivo ZIP chamado anexos_compactados.zip, contendo os arquivos baixados.
+
+Pontos Importantes
+- O código garante que os arquivos sejam baixados antes de iniciar a compactação.
+- Usa os.makedirs('anexos', exist_ok=True) para criar a pasta se ela não existir.
+- A verificação if len(os.listdir('anexos')) == 2: assegura que a compactação só ocorre após o download dos dois arquivos.
+- O arquivo ZIP gerado é chamado anexos_compactados.zip e sobrescreve versões anteriores, se existirem.
