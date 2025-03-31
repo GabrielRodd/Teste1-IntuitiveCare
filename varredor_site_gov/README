@@ -24,3 +24,6 @@ Pontos Importantes
 - Usa os.makedirs('anexos', exist_ok=True) para criar a pasta se ela não existir.
 - A verificação if len(os.listdir('anexos')) == 2: assegura que a compactação só ocorre após o download dos dois arquivos.
 - O arquivo ZIP gerado é chamado anexos_compactados.zip e sobrescreve versões anteriores, se existirem.
+
+CAMINHO DO SCRIPT: 
+varredor_site_gov\spiders\gov_rol.py
